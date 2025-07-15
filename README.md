@@ -3,8 +3,8 @@
 <img src="https://i.imgur.com/Clzj7Xs.png" alt="osTicket logo"/>
 </p>
 
-<h1>osTicket - Prerequisites and Installation</h1>
-This tutorial outlines the prerequisites and installation of the open-source help desk ticketing system osTicket.<br />
+<h1>osTicket - Post-Install Configuration</h1>
+This tutorial outlines the post-install configuration of the open-source help desk ticketing system osTicket.<br />
 
 <h2>Environments and Technologies Used</h2>
 
@@ -16,261 +16,254 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 
 - Windows 10</b> (22H2)
 
-<h2>List of Prerequisites</h2>
+<h2>Post-Install Configuration Objectives</h2>
 
-- Microsoft URL Rewrite Module for IIS (version 2.0, x64)
-- Microsoft Visual C++ Redistributable (x86)
-- MySQL for Windows (version 5.5.62, x86)
-- PHP for Windows (version 7.3.8, x86)
-- PHP Manager for IIS (version 1.5.0, x64)
+- Configure: Roles, Departments, and Teams
+- SLA Levels
+- Agent Permissions
+- User Access
+- Basic Help Topics (Internal use only)
 
-<h2>Installation Steps</h2>
+
+<h2>Configuration Steps</h2>
 
 <p>
-<img src="https://imgur.com/giqBLsG.png" alt="Prerequisite files install"/>
+<img src="https://imgur.com/ypBQ1jf.png" height="80%" width="80%" alt="osTicket login"/>
 </p>
 <p>
-Install prereq_files.zip raw files from GitHub on to your desktop for easy access.
+Once all installation steps and requsites have been installed, login to osTicket at: http://localhost/osTicket/scp/login.php
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/Le1nC05.png" height="80%" width="80%" alt="Unzip prerequisite files"/>
+<img src="https://imgur.com/jYA8H8a.png" height="80%" width="80%" alt="Admin panel"/>
 </p>
 <p>
-Unzip prereq_files.zip to desktop.
+From the main screen select the "Admin Panel" to start configuring osTicket.
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/MC1vaip.png" height="80%" width="80%" alt="Enable IIS with CGI"/>
+<img src="https://imgur.com/Ht64bpf.png" height="80%" width="80%" alt="Add Roles"/>
 </p>
 <p>
-Open start menu and navigate to Control Panel. From control panel click "uninstall a program" and open "Turn Windows features on or off" scroll till you find Internet Information Services. Tick the box and then enable CGI. Internet Information Services -> World Wide Web Services -> Application Development Features -> CGI. Once both are enabled press OK.
+Within Admin Panel, navigate to Agents -> Roles -> Add New Role. 
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/ShxcZ4t.png" height="80%" width="80%" alt="PHP Manager"/>
+<img src="https://imgur.com/pqEtT8v.png" height="80%" width="80%" alt="Supreme Admin"/>
 </p>
 <p>
-Double click and install "PHPManagerForIIS_V1.5.0.msi" from prereq_files folder on desktop. Agree to any dialog and click next until install finishes.
+Create the role "Supreme Admin" and enable all permissions within the "Permissions" tab. Once configured, select "Add Role".
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/lmKLvtU.png" height="80%" width="80%" alt="IIS URL Rewwrite"/>
+<img src="https://imgur.com/e78dMEu.png" height="80%" width="80%" alt="Add Department"/>
 </p>
 <p>
-Install "rewrite_amd64_en-US.msi" in the same way as PHP Manager in previous step.
+Navigate back to the main "Agents" tab and select Departments -> "Add New Department".
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/Fz9XFpD.png" height="80%" width="80%" alt="Create PHP"/>
+<img src="https://imgur.com/kQHIXHB.png" height="80%" width="80%" alt="SysAdmins"/>
 </p>
 <p>
-Navigate to your C:\ directory using file explorer and create a new folder named "PHP".
+No need to edit any settings, simply set name to "SysAdmins" and select "Create Dept".
+
+<b>Attention: Tickets will be auto-assigned to the "Maintenance" department, Select it and under "more" select "Delete" to avoid any issues. </b>
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/MBpjgEY.png" height="80%" width="80%" alt="PHP extract"/>
+<img src="https://imgur.com/xfBy5q5.png" height="80%" width="80%" alt="Create Team"/>
 </p>
 <p>
-In prereq_files folder right click "php-7.3.8-nts-Win32-VC15-x86.zip" and choose extract all. Use the browse button to navigate to the PHP folder on the C:\ directory and click choose folder. Files should be contained directly in the PHP folder, if a folder is created within PHP with the files inside that one, you will need to move them to PHP.
+Back in main "Agents" tab, navigate to Teams -> "Add New Team".
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/JzZkwSh.png" height="80%" width="80%" alt="VC redist install"/>
+<img src="https://imgur.com/63KMfKv.png" height="80%" width="80%" alt="Online Banking"/>
 </p>
 <p>
-Next from prereq_files install "VC_redist.x86.exe". Agree to the terms and press install once launched.
+Create a new team with the name "Online Banking", select "Create Team".
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/CgacgQ3.png" height="80%" width="80%" alt="MySQL install"/>
+<img src="https://imgur.com/TWNIjjS.png" height="80%" width="80%" alt="Add Agents"/>
 </p>
 <p>
-Install "mysql-5.5.62-win32.msi" and leave box ticked to launch MySQL configuration wizard.
+Within main "Agents", Agents -> "Add New Agent". This is where you add team members that will access the osTicket program and be able to intract with tickets submitted to the system. For our purposes we will be creating two agents, one being support and one being an Administrator.
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/FYIw4Cr.png" height="80%" width="80%" alt="MySQL standard config"/>
+<img src="https://imgur.com/0K9gGRK.png" height="80%" width="80%" alt="New agent Credentials"/>
 </p>
 <p>
-Click next until you have to choose configuration type, select Standard Configuration.
+Create two Agents. 
+First agent's credentials:
+  
+Name: Jane Smith
+
+Email: jane@email.com
+
+Username: jane
+
+Second agent's credentials:
+
+Name: Jacob West
+
+Email: jacob@email.com
+
+Username: jacob
+
+Follow next steps to set password and permissions for agent.
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/sw4I7Uq.png" height="80%" width="80%" alt="MySQL password"/>
+<img src="https://imgur.com/mEK729I.png" height="80%" width="80%" alt="Set Password"/>
 </p>
 <p>
-For demonstration set password to "root" although another password can be chosen, be sure to write it down for later use.
+Within the "Add New Agent" menu, select "Set Password" and uncheck "Send the agent a password reset email", Enter "Password1" for both boxes and agents.
+
+  Also, uncheck "Require password change at next login" for ease of use. Once passwords match select "Set".
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/Cj9Afxj.png" height="80%" width="80%" alt="IIS as admin"/>
+<img src="https://imgur.com/n6mawYC.png" height="80%" width="80%" alt="Agent Access">
 </p>
 <p>
-Using the start menu search "IIS" and launch the Internet Information Services (IIS) Manager as an administrator.
+Under the "Access" tab for agent Jane set: 
+  
+Department: SysAdmins 
+
+Role: Supreme Admin
+
+for agent Jacob:
+
+Department: Support
+
+Role: Expanded Access
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/B1ohOtl.png" height="80%" width="80%" alt="PHP Manager settings"/>
+<img src="https://imgur.com/azyRmTL.png" height="80%" width="80%" alt="Agent Teams">
 </p>
 <p>
-From the IIS home screen open PHP Manager.
-</p>
-<br />
-
-</p>
-<p>
-<img src="https://imgur.com/fSlN6a3.png" height="80%" width="80%" alt="Register PHP"/>
-</p>
-<p>
-From this menu open "Register new PHP version", using the ellipsis (3 dots) browse through the PHP file on your C drive and select "php-cgi.exe" and press ok to return to IIS.
+Under the "Teams" tab for agent Jane, select "Online Banking" and click "Add". Jacob will not be in a team. Once agent configuration is complete, select "Create".
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/gZjlCqg.png" height="80%" width="80%" alt="Restart sever"/>
+<img src="https://imgur.com/ApvqKxf.png" height="80%" width="80%" alt="Create SLAs">
 </p>
 <p>
-Right click the main directory (name of your computer) and stop the server, right click again and start it to refresh the new PHP settings. You can also go back to the main directory and click restart on the right side.
-</p>
-<br />
-
-<p>
-<img src="https://imgur.com/mxHwBHj.png" height="80%" width="80%" alt="Extract and copy"/>
-</p>
-<p>
-Returning the the installation files, unzip "osTicket-v1.15.8.zip" and copy the “upload” folder into “c:\inetpub\wwwroot”. Rename the copied "upload" folder to "osTicket" (Make sure to keep lower case and capitals exactly as shown).
+Open the "Manage" tab, navigate to SLA -> "Add New SLA Plan".
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/H0Ivo3u.png" height="80%" width="80%" alt="Restart server 2"/>
+<img src="https://imgur.com/0DVS5Ar.png" height="80%" width="80%" alt="SLA Config">
 </p>
 <p>
-Reload IIS (Open IIS, Stop and Start the server)
+Create three new SLA plans:
+  
+Plan "Sev-A":
+
+Grace Period: 1 hour
+
+Schedule: 24/7
+
+Plan "Sev-B":
+
+Grace Period: 4 Hours
+
+Schedule: 24/7
+
+Plan "Sev-C":
+
+Grace Period: 8 Hours
+
+Schedule: 24/5 (Business Hours)
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/zPLp0VU.png" height="80%" width="80%" alt="Browse HTTP"/>
+<img src="https://imgur.com/dQgZ2Pg.png" height="80%" width="80%" alt="SLA List">
 </p>
 <p>
-In IIS, Go to sites -> Default Web Site -> osTicket, and click "Browse *:80" on the right side. This will show you the remaining requirements to run osTicket.
-</p>
-<br />
-
-<p>
-<img src="https://imgur.com/dvSafWs.png" height="80%" width="80%" alt="PHP enable extensions"/>
-</p>
-<p>
-Inside the PHP Manager for osTicket, open the "Enable or disable extension" menu.
+SLA plans should show up the same as displayed above.
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/PSynfnr.png" height="80%" width="80%" alt="PHP extensions"/>
+<img src="https://imgur.com/pjj10qB.png" height="80%" width="80%" alt="Add Help Topics">
 </p>
 <p>
-Enable the 3 following extensions: "php_imap.dll", " php_intl.dll", and "php_opcache.dll".
-</p>
-<br />
-
-<p>
-<img src="https://imgur.com/vvWohPr.png" height="80%" width="80%" alt="Confirm extensions"/>
-</p>
-<p>
-Refresh the webpage for osTicket installer and the following prerequsites will have updated.
+Navigate to Help Topics -> "Add New Help Topic".
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/mXni8Qg.png" height="80%" width="80%" alt="Config file"/>
+<img src="https://imgur.com/nTNxi4P.png" height="80%" width="80%" alt="Help Topic Config">
 </p>
 <p>
-In file explorer, navigate to "C:\inetpub\wwwroot\osTicket\include\" and rename the file "ost-sampleconfig.php" to "ost-config.php".
+Create five new help topics.
+  
+"Help Topic" -> "Parent Topic"
+
+Business Critical outage ->  Report a Problem
+
+Personal Computer Issues->  Report a Problem
+
+Password Reset->  Report a Problem
+
+Equipment Request-> General Inquiry
+
+Other-> General Inquiry
+
+No other settings need adjusted for the sake of this tutorial. 
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/tyEcS4q.png" height="80%" width="80%" alt="Config Permissions"/>
+<img src="https://imgur.com/zTdx9oF.png" height="80%" width="80%" alt="Complete Help Topics">
 </p>
 <p>
-Right click the newly renamed "ost-config.php" and select properties. Security -> Advanced, and disable inheritance. This will remove all permissions currently assigned.
-</p>
-<br />
-
-<p>
-<img src="https://imgur.com/WD5ZQx6.png" height="80%" width="80%" alt="Set permissions"/>
-</p>
-<p>
-Still within Security -> Advanced, click "Add". This dialog will pop-up, click "Select a principal". Enter "everyone" into the "Enter the object name to select" box and click check names to verify. Press OK and make sure "Full control" is selected.
+Verify that all help topics show up as displayed above.
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/GfjUWD2.png" height="80%" width="80%" alt="Apply permissions"/>
+<img src="https://imgur.com/1enADKu.png" height="80%" width="80%" alt="Agent Panel">
 </p>
 <p>
-Make Sure to Select "Apply" so permissions are set.
-</p>
-<br />
-
-<p>
-<img src="https://imgur.com/h9MBVmT.png" height="80%" width="80%" alt="HeidiSQL install"/>
-</p>
-<p>
-Returning to the prereq_files folder, install "HeidiSQL_12.3.0.6589_Setup.exe", this is to setup a database for osTicket to store its data.
+Navigate back to the "Agent Panel" on the top right of the screen. 
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/iYg5tbC.png" height="80%" width="80%" alt="SQL session"/>
+<img src="https://imgur.com/KAmsxY4.png" height="80%" width="80%" alt="New User">
 </p>
 <p>
-Create a new session within HeidiSQL make the password the same as the MySQL password, in this case "root".
-</p>
-<br />
-
-<p>
-<img src="https://imgur.com/blz4phU.png" height="80%" width="80%" alt="New database"/>
-</p>
-<p>
-Within your session right click the top directory and select create new -> Database.
+Go to Users -> "Add User".
 </p>
 <br />
 
 <p>
-<img src="https://imgur.com/a7axki6.png" height="80%" width="80%" alt="Database name"/>
+<img src="https://imgur.com/EkO8t2h.png" height="80%" width="80%" alt="">
 </p>
 <p>
-In the pop-up dialog, set the name to "osTicket" (case sensitive) and press "OK".
-</p>
-<br />
+Enter email and name (e.g., karen: karen@email.com), select "Add User".
 
-<p>
-<img src="https://imgur.com/GBprmKS.png" height="80%" width="80%" alt=""/>
-</p>
-<p>
-Return to your HTTP (Browse *:80) window for the osTicket installer and select continue. Copy information as shown or create your own information. The Admin user information will be how you login and configure osTicket so be sure to write it down. For the database make sure the "MySQL Database" is "osTicket" and the password and username are consistent with your HeidiSQL session. After all the information is filled out, press "Install Now".
-</p>
-<br />
-
-<p>
-<img src="https://imgur.com/RTkHqDB.png" height="80%" width="80%" alt="Verification"/>
-</p>
-<p>
-To verify installation was successful, open a new window and go to "localhost/osTicket/scp/login.php". This is how to access the osTicket configuration for the next tutorial repositories.
+This is the end of configuration for osTicket. In the next repository we will be utilizing everything we just made to make tickets and mock a typical ticket lifecycle.
 </p>
 <br />
